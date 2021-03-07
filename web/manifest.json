@@ -1,11 +1,11 @@
 {
-    "name": "flutter_resume",
-    "short_name": "flutter_resume",
+    "name": "samaralii",
+    "short_name": "samaralii",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Mobile Application Developer",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
