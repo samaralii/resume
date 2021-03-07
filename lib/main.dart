@@ -21,8 +21,7 @@ class MyApp extends StatelessWidget {
           primaryColorLight: kPrimaryLightColor,
           backgroundColor: kBackgroundColor,
           textTheme: GoogleFonts.robotoTextTheme(Theme.of(context).textTheme)),
-      // home: Home(),
-      home: CommingSoon(),
+      home: Home(),
     );
   }
 }
