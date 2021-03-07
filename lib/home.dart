@@ -10,7 +10,7 @@ class _HomeState extends State<Home> {
   Widget _body() {
     return Container(
       child: Center(
-        child: Text("Data"),
+        child: Text("Coming soon.."),
       ),
     );
   }
