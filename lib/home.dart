@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:samaralii/components/profile.dart';
 import 'package:samaralii/utils/app_const.dart';
 
 class Home extends StatefulWidget {
@@ -29,7 +30,21 @@ class _HomeState extends State<Home> {
       child: Container(
         height: 1000,
         width: 1150,
-        color: Colors.red,
+        child: Row(
+          children: [
+            //profile
+            Expanded(flex: 3, child: Profile()),
+            Container(
+              width: 30,
+            ),
+            Expanded(
+              flex: 10,
+              child: Container(
+                color: Colors.yellow,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

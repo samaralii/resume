@@ -15,10 +15,9 @@ class _ProfileState extends State<Profile> {
     return Card(
       clipBehavior: Clip.antiAlias,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(8),
       ),
       child: Container(
-        color: Colors.yellow,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -72,8 +71,12 @@ class CustomClipPath extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     Path path = Path();
-    path.lineTo(0, 0);
-    path.lineTo(0, 200);
+    //x w -- y h |
+    path.lineTo(size.width, 20);
+    path.lineTo(size.width, size.height);
+    path.lineTo(0, size.height - 20);
+    path.close();
+
     return path;
   }
 
