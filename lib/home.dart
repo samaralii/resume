@@ -28,9 +28,9 @@ class _HomeState extends State<Home> {
       padding: EdgeInsets.symmetric(
           vertical: kDefaultPadding * 3, horizontal: kDefaultPadding),
       child: Container(
-        height: 1000,
         width: 1150,
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //profile
             Expanded(flex: 3, child: Profile()),
@@ -40,6 +40,7 @@ class _HomeState extends State<Home> {
             Expanded(
               flex: 10,
               child: Container(
+                height: 1100,
                 color: Colors.yellow,
               ),
             ),

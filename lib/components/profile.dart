@@ -1,12 +1,13 @@
-import 'dart:html';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:samaralii/data/data.dart';
 import 'package:samaralii/utils/app_const.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 import '../custom_clip_path.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -14,6 +15,9 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  final _lineStyle = LineStyle(color: Colors.grey, thickness: 0.5);
+  final _indicatorSize = 8.0;
+
   Widget _body() {
     return Card(
       clipBehavior: Clip.antiAlias,
@@ -48,21 +52,22 @@ class _ProfileState extends State<Profile> {
             _imageView(),
             _info(),
             Container(
-              height: kDefaultPadding,
-            )
+              height: 40,
+            ),
+            Align(alignment: Alignment.center, child: _downloadButton()),
+            Container(
+              height: 25,
+            ),
           ],
         ),
       ),
     );
   }
 
-  final _lineStyle = LineStyle(color: Colors.grey, thickness: 0.5);
-  final _indicatorSize = 10.0;
-
   Widget _info() {
     return Container(
       child: ListView.builder(
-        itemCount: 3,
+        itemCount: USERINFO.length,
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
@@ -71,17 +76,16 @@ class _ProfileState extends State<Profile> {
             child: TimelineTile(
                 afterLineStyle: _lineStyle,
                 beforeLineStyle: _lineStyle,
-                isFirst: index == 0,
-                isLast: index == 2,
+                isFirst: false,
+                isLast: index == USERINFO.length - 1,
                 alignment: TimelineAlign.start,
                 indicatorStyle: IndicatorStyle(
                   color: kPrimaryColor,
                   height: _indicatorSize,
                   width: _indicatorSize,
                 ),
-                // startChild: Container(),
                 endChild: Container(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                   child: RichText(
                     text: TextSpan(
                         style: TextStyle(
@@ -89,10 +93,11 @@ class _ProfileState extends State<Profile> {
                             fontWeight: FontWeight.w300,
                             fontSize: 13),
                         children: [
-                          TextSpan(text: "Text1"),
+                          TextSpan(text: USERINFO.keys.elementAt(index)),
+                          TextSpan(text: ": "),
                           TextSpan(
-                              text: "Text1",
-                              style: TextStyle(color: Colors.grey)),
+                              text: USERINFO.values.elementAt(index),
+                              style: TextStyle(color: Colors.grey.shade500)),
                         ]),
                   ),
                 )),
@@ -110,12 +115,33 @@ class _ProfileState extends State<Profile> {
           decoration: BoxDecoration(
             color: kPrimaryDarkColor,
             // image: DecorationImage(
-            //     image: NetworkImage("https://i.imgur.com/nH8iZC1.jpg"))
+            //     image: NetworkImage(IMAGE_URL), fit: BoxFit.cover),
           ),
         ),
         clipper: CustomClipPath(),
       ),
     );
+  }
+
+  Widget _downloadButton() {
+    return RawChip(
+        backgroundColor: kPrimaryColor,
+        useDeleteButtonTooltip: false,
+        deleteIcon: CircleAvatar(
+          radius: 14,
+          backgroundColor: Colors.white,
+          child: FaIcon(
+            FontAwesomeIcons.download,
+            color: Colors.black,
+            size: 10,
+          ),
+        ),
+        labelPadding: EdgeInsets.symmetric(vertical: 4, horizontal: 15),
+        onDeleted: () {},
+        label: Text(
+          "Download Cv",
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
+        ));
   }
 
   @override
