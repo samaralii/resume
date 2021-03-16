@@ -3,10 +3,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:samaralii/custom_views/custom_card.dart';
 import 'package:samaralii/data/data.dart';
 import 'package:samaralii/utils/app_const.dart';
 import 'package:timeline_tile/timeline_tile.dart';
-import '../custom_clip_path.dart';
+import '../custom_views/custom_clip_path.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Profile extends StatefulWidget {
@@ -19,11 +20,7 @@ class _ProfileState extends State<Profile> {
   final _indicatorSize = 8.0;
 
   Widget _body() {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
+    return CustomCard(
       child: Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

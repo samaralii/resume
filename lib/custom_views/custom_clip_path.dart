@@ -7,7 +7,7 @@ class CustomClipPath extends CustomClipper<Path> {
     Path path = Path();
     path.moveTo(size.width, 0); // start with top right corner
     path.lineTo(size.width,
-        size.height - 20); // top right corner to buttom right corner
+        size.height - 20); // top right corner to bottom right corner
     path.lineTo(0, size.height); // bottom right corner to bottom left corner
     path.lineTo(0, 20); // bottom left corner to top left corner
     path.close();

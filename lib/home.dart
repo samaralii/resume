@@ -1,6 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:samaralii/components/profile.dart';
+import 'package:samaralii/custom_views/custom_card.dart';
 import 'package:samaralii/utils/app_const.dart';
 
 class Home extends StatefulWidget {
@@ -40,8 +45,20 @@ class _HomeState extends State<Home> {
             Expanded(
               flex: 10,
               child: Container(
-                height: 1100,
-                color: Colors.yellow,
+                child: Column(
+                  children: [
+                    _navigationBar(),
+                    Container(
+                      height: 30,
+                    ),
+                    CustomCard(
+                      child: Container(
+                        height: 600,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -67,7 +84,77 @@ class _HomeState extends State<Home> {
   }
 
   //navigation bar
-  Widget _navigationBar() {}
+  Widget _navigationBar() {
+    return CustomCard(
+        child: Container(
+      height: 70,
+      child: Row(
+        children: [
+          InkWell(
+            onTap: () {},
+            child: Container(
+              color: kPrimaryColor,
+              width: 70,
+              height: double.infinity,
+              child: Icon(
+                FontAwesomeIcons.home,
+                size: 18,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              margin: EdgeInsets.only(left: 10),
+              child: Row(children: [
+                menuBtn(text: "Resume", view: Container()),
+                menuBtn(text: "Portfolio", view: Container()),
+                menuBtn(text: "Contact", view: Container()),
+              ]),
+            ),
+          ),
+          Container(
+            child: _hireMe(),
+          ),
+        ],
+      ),
+    ));
+  }
+
+  Widget _hireMe() {
+    return RawChip(
+        backgroundColor: kPrimaryColor,
+        useDeleteButtonTooltip: false,
+        deleteIcon: CircleAvatar(
+          radius: 14,
+          backgroundColor: Colors.white,
+          child: FaIcon(
+            FontAwesomeIcons.solidPaperPlane,
+            color: Colors.black,
+            size: 10,
+          ),
+        ),
+        labelPadding: EdgeInsets.symmetric(vertical: 4, horizontal: 15),
+        onDeleted: () {},
+        label: Text(
+          "Hire Me",
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
+        ));
+  }
+
+  Widget menuBtn({@required String text, @required Widget view}) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 10),
+      child: TextButton(
+        onPressed: () {
+          //
+        },
+        child: Text(
+          text.toUpperCase(),
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
